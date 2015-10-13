@@ -11,10 +11,10 @@ NUMWIFITRYS  = 200    -- Maximum number of WIFI Testings while waiting for conne
 function launch()
   print("Connected to WIFI!")
   print("IP Address: " .. wifi.sta.getip())
-  -- Call our command file every second, remembering there is a deep sleep
+  -- Call our command file every minute, remembering there is a deep sleep
   -- of at least 10 minutes within the CMDFILE
   print ("Calling CMDFILE")
-  tmr.alarm(0, 1000, 1, function() dofile(CMDFILE) end )
+  tmr.alarm(0, 60000, 1, function() dofile(CMDFILE) end )
 end
 
 function checkWIFI() 

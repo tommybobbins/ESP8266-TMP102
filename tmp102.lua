@@ -34,9 +34,10 @@ do
 	local lsb = r:byte(2) -- receive low byte
     local tempval = bit.rshift(bit.bor(bit.lshift(msb, 8), lsb), 4) 
     --print("tempval: " .. tempval)
-	local f = (tempval / 16) * 9 / 5 + 32   -- convert to fahrenheit
+    --local f = (tempval / 16) * 9 / 5 + 32   -- convert to fahrenheit
+    local celcius = (tempval / 16) --convert to Celcius
     --print("celsius: " .. celsius)
-    return f
+    return celcius
   end
 	
   -- expose

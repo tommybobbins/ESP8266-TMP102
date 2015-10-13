@@ -1,7 +1,7 @@
 -- Constants
-SSID    = "<your WiFi SSID>"
-APPWD   = "<your passkey>"
-CMDFILE = "mqtt.lua"   -- File that is executed after connection
+SSID    = "<MY SSID>"
+APPWD   = "my_password"
+CMDFILE = "httppost.lua"   -- File that is executed after connection
 
 -- Some control variables
 wifiTrys     = 0      -- Counter of trys to connect to wifi
@@ -11,8 +11,10 @@ NUMWIFITRYS  = 200    -- Maximum number of WIFI Testings while waiting for conne
 function launch()
   print("Connected to WIFI!")
   print("IP Address: " .. wifi.sta.getip())
-  -- Call our command file every minute.
-  tmr.alarm(0, 60000, 1, function() dofile(CMDFILE) end )
+  -- Call our command file every second, remembering there is a deep sleep
+  -- of at least 10 minutes within the CMDFILE
+  print ("Calling CMDFILE")
+  tmr.alarm(0, 1000, 1, function() dofile(CMDFILE) end )
 end
 
 function checkWIFI() 
@@ -45,6 +47,7 @@ if ( ( ipAddr == nil ) or  ( ipAddr == "0.0.0.0" ) ) then
   tmr.alarm( 0 , 2500 , 0 , checkWIFI )  -- Call checkWIFI 2.5S in the future.
 else
  -- We are connected, so just run the launch code.
+ print("-- About to launch code! ")
  launch()
 end
 -- Drop through here to let NodeMcu run

@@ -1,6 +1,6 @@
 -- Constants
-SSID    = "<MY SSID>"
-APPWD   = "my_password"
+SSID    = "<YOURSSID>"
+APPWD   = "<WIFIPASS>"
 CMDFILE = "httppost.lua"   -- File that is executed after connection
 
 -- Some control variables
@@ -14,7 +14,7 @@ function launch()
   -- Call our command file every minute, remembering there is a deep sleep
   -- of at least 10 minutes within the CMDFILE
   print ("Calling CMDFILE")
-  tmr.alarm(0, 60000, 1, function() dofile(CMDFILE) end )
+  tmr.alarm(0, 8000, 1, function() dofile(CMDFILE) end )
 end
 
 function checkWIFI() 
@@ -35,6 +35,7 @@ function checkWIFI()
 end
 
 print("-- Starting up! ")
+tmr.delay(30000000)
 
 -- Lets see if we are already connected by getting the IP
 ipAddr = wifi.sta.getip()

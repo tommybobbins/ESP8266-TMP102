@@ -33,6 +33,8 @@ do
 	local msb = r:byte(1) -- receive high byte
 	local lsb = r:byte(2) -- receive low byte
     local tempval = bit.rshift(bit.bor(bit.lshift(msb, 8), lsb), 4) 
+    if (tempval > 2047) then
+        tempval = tempval - 4097
     --print("tempval: " .. tempval)
     --local f = (tempval / 16) * 9 / 5 + 32   -- convert to fahrenheit
     local celcius = (tempval / 16) --convert to Celcius

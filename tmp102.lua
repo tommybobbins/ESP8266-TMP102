@@ -33,11 +33,14 @@ do
 	local msb = r:byte(1) -- receive high byte
 	local lsb = r:byte(2) -- receive low byte
     local tempval = bit.rshift(bit.bor(bit.lshift(msb, 8), lsb), 4) 
-    if (tempval > 0x0777) then
-        tempval = (bxor(tempval, 0xffff)) + 1
-        tempval = (-1) * tempval
+    print ("Raw tempval: " .. tempval )
+    if (bit.rshift(msb,7) == 1) then
+        --NEGATIVE
+        --tempval = bit.band(bit.bnot(tempval),0b011111111111)
+        tempval = bit.band(bit.bnot(tempval), 0xFFF)
+        tempval = tempval * -1
     end
-    --print("tempval: " .. tempval)
+    print("tempval: " .. tempval .. " msb: " .. msb .. " lsb: " .. lsb)
     --local f = (tempval / 16) * 9 / 5 + 32   -- convert to fahrenheit
     local celcius = (tempval / 16) --convert to Celcius
     --print("celsius: " .. celsius)

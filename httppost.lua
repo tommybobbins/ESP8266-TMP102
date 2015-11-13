@@ -28,8 +28,8 @@ if (Temperature < 85 ) then
 
                         t=nil
                         Temperature=nil
-                        ds18b20 = nil
-                        package.loaded["ds18b20"]=nil
+                        tmp102 = nil
+                        package.loaded["tmp102"]=nil
   conn:on("disconnection", function(conn)
                         print("Got disconnection...")
                         print ("Deep sleep...")

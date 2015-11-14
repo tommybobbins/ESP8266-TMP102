@@ -16,7 +16,7 @@ if (Temperature < 85 ) then
   Mac = wifi.sta.getmac()
   Url=("GET /checkin/" .. Mac .. "/temperature/" .. Temperature .. "/ HTTP/1.1\r\n"
       .. "Host: " .. HTTPHOST .."\r\n"
-      .. "Connection: keep-alive\r\nAccept: */*\r\n\r\n")
+      .. "Accept: */*\r\n\r\n")
   print "Connecting to HTTP. Please wait..."
 
   conn=net.createConnection(net.TCP, 0)
@@ -25,7 +25,6 @@ if (Temperature < 85 ) then
       conn:send(Url) 
       end)
   conn:connect(HTTPPORT,HTTPHOST)
-
                         t=nil
                         Temperature=nil
                         tmp102 = nil

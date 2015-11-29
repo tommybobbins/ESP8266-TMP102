@@ -9,7 +9,7 @@ NUMWIFITRYS  = 200    -- Maximum number of WIFI Testings while waiting for conne
 HTTPHOST = "192.168.1.130"
 HTTPPORT = 80
 -- Length of time to sleep for in microseconds
-DEEP_SLEEP = 60000000
+DEEP_SLEEP = 900000000
 
 -- TMP102 connections
 id=0
